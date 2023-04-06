@@ -46,6 +46,7 @@ const estados = [
 ]
 
 const estadoSelecionado = ref('');
+
 </script>
 
 <template>
@@ -69,7 +70,6 @@ const estadoSelecionado = ref('');
         <div class="form-group">
           <label for="informacaoCliente.senha">Senha:</label>
           <input type="password" v-model="informacaoCliente.senha" class="form-control" placeholder="Senha" required>
-          <input type="checkbox" v-model="informacaoCliente.senha" value="senha">
         </div>
 
         <div class="form-group">
