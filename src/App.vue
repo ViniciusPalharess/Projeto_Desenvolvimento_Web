@@ -1,18 +1,20 @@
 <script setup>
   import { ref } from 'vue'
 
-const nome = ref('');
-const email = ref('');
-const senha = ref('');
-const senhaConfirmacao = ref('');
-const mostrarSenha = ref(false);
-const dataDeNascimento = ref('');
-const endereco = ref(''); 
-const cidade = ref('');
-const hobbies = ref('');
-const liguagensDeProgramacao = ref('');
-const biografia = ref('');
-
+  const informacaoCliente = ref({
+    nome: '',
+    email: '',
+    senha: '',
+    confirma: '',
+    data: 0,
+    endereco: '',
+    cidade: '',
+    estado: '',
+    hobbies: ([]),
+    linguagens: ([]),
+    biografia: '',
+  })
+  
 const estados = [
   { sigla: 'AC', nomeEstado: 'Acre' },
   { sigla: 'AL', nomeEstado: 'Alagoas' },
@@ -54,67 +56,67 @@ const estados = [
         <h2 class="card-title">Insira os dados:</h2>
 
         <div class="form-group">
-          <label for="nome">Nome:</label>
-          <input type="text" v-model="nome" class="form-control" id="nome" placeholder="Nome" required>
+          <label for="informacaoCliente.nome">Nome:</label>
+          <input type="text" v-model="informacaoCliente.nome" class="form-control" placeholder="Nome" required>
         </div>
 
         <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" v-model="email" class="form-control" id="email" placeholder="Email" required>
+          <label for="informacaoCliente.email">Email:</label>
+          <input type="email" v-model="informacaoCliente.email" class="form-control" placeholder="Email" required>
         </div>
 
         <div class="form-group">
-          <label for="senha">Senha:</label>
-          <input type="password" v-model="senha" class="form-control" id="senha" placeholder="Senha" required>
-          <input type="checkbox" v-model="mostrarSenha" value="Sim">
+          <label for="informacaoCliente.senha">Senha:</label>
+          <input type="password" v-model="informacaoCliente.senha" class="form-control" placeholder="Senha" required>
+          <input type="checkbox" v-model="informacaoCliente.senha" value="senha">
         </div>
 
         <div class="form-group">
-          <label for="senha-confirmacao">Confirme a Senha:</label>
-          <input type="password" v-model="senhaConfirmacao" class="form-control" id="senhaConfirmacao" placeholder="Confirmação De Senha" required>
+          <label for="informacaoCliente.senhaConfirmacao">Confirme a Senha:</label>
+          <input type="password" v-model="informacaoCliente.senhaConfirmacao" class="form-control" placeholder="Confirmação De Senha" required>
         </div>
 
         <div class="form-group">
-          <label for="dataDeNascimento">Data de Nascimento:</label>
-          <input type="date" v-model="dataDeNascimento" class="form-control" id="dataDeNascimento" placeholder="Data de Nascimento" required>
+          <label for="informacaoCliente.dataDeNascimento">Data de Nascimento:</label>
+          <input type="date" v-model="informacaoCliente.dataDeNascimento" class="form-control" placeholder="Data de Nascimento" required>
         </div>
 
         <div class="form-group">
-        <label for="endereco">Endereço:</label>
-         <input type="text" v-model="endereco" id="endereco" name="endereco" class="form-control" placeholder="Endereço" required>
+        <label for="informacaoCliente.endereco">Endereço:</label>
+         <input type="text" v-model="informacaoCliente.endereco" name="endereco" class="form-control" placeholder="Endereço" required>
         </div>
 
         <div class="form-group">
-          <label for="cidade">Cidade:</label>
-          <input type="text" v-model="cidade" class="form-control" id="cidade" placeholder="Cidade" required>
+          <label for="informacaoCliente.cidade">Cidade:</label>
+          <input type="text" v-model="informacaoCliente.cidade" class="form-control" placeholder="Cidade" required>
         </div>
 
         <div class="form-group">
-          <label for="estado">Estado:</label>
-          <select id="estado" v-model="selectedState" class="form-control" required>
-            <option value="" disabled>Selecione um estado</option>
-            <option v-for="(estado, index) in estados" :key="index" :value="estado.sigla">{{ estado.sigla }} - {{ estado.nomeEstado }}</option>
-          </select>
+          <label for="estado">Estado:</label> 
+          <select id="estado" v-model="estado" class="form-control" required> 
+            <option value="">Selecione um estado</option> 
+            <option v-for="estado in estados" :key="estado.sigla" :value="estado.sigla">{{estado.nomeEstado}}</option> 
+          </select> 
         </div>
 
         <div class="form-group">
-          <label for="hobbies">Hobbies:</label>
-          <input type="text" v-model="hobbies" id="hobbies" name="Hobbies" class="form-control" placeholder="Hobbies"  required>
+          <label for="informacaoCliente.hobbies">Hobbies:</label>
+          <input type="text" v-model="informacaoCliente.hobbies" id="hobbies" name="Hobbies" class="form-control" placeholder="Hobbies"  required>
         </div>
         <div class="form-group">
-        <label for="liguagensDeProgramacao">Liguagens de Programação:</label>
-         <input type="text" v-model="liguagensDeProgramacao" id="liguagensDeProgramacao" name="Liguagens de Programacao" class="form-control" placeholder="Linguagens de Programação"  required>
+        <label for="informacaoCliente.liguagensDeProgramacao">Liguagens de Programação:</label>
+         <input type="text" v-model="informacaoCliente.liguagensDeProgramacao" id="liguagensDeProgramacao" name="Liguagens de Programacao" class="form-control" placeholder="Linguagens de Programação"  required>
         </div>
         <div class="form-group">
-        <label for="biografia">Biografia:</label>
-        <textarea v-model="biografia" name="biografia" id="biografia" cols="70" rows="6" class="form-control" placeholder="Biografia"></textarea>
+        <label for="informacaoCliente.biografia">Biografia:</label>
+        <textarea v-model="informacaoCliente.biografia" name="biografia" cols="70" rows="6" class="form-control" placeholder="Biografia"></textarea>
       </div>
       
       </div>
     </div>
   </div>
 
-    <div class=" card mb-5 mt-5 " id="informacao">
+    <div class=" card mb-5 mt-5 ">
       <div class="card-header text-center">
         <h1>Formulário</h1>
       </div>
@@ -123,27 +125,32 @@ const estados = [
       <div>
         <ul class="list-group list-group-flush">
     <label for="itemNome">Nome:</label>
-    <li class="list-group-item">{{nome}}</li>
+    <li class="list-group-item">{{ informacaoCliente.nome }}</li>
     <label for="itemNome">Email:</label>
-    <li class="list-group-item">{{email}}</li>
+    <li class="list-group-item">{{informacaoCliente.email}}</li>
     <label for="itemNome">Senha:</label>
-    <li class="list-group-item">{{senha}}</li>
+    <li class="list-group-item">{{informacaoCliente.senha}}</li>
     <label for="itemNome">Confirmação:</label>
-    <li class="list-group-item">{{senhaConfirmacao}}</li>
+    <li class="list-group-item">{{informacaoCliente.senhaConfirmacao}}</li>
     <label for="itemNome">Data de Nascimento:</label>
-    <li class="list-group-item">{{dataDeNascimento}}</li>
+    <li class="list-group-item">{{informacaoCliente.dataDeNascimento}}</li>
     <label for="itemNome">Endereço:</label>
-    <li class="list-group-item">{{endereco}}</li>
+    <li class="list-group-item">{{informacaoCliente.endereco}}</li>
     <label for="itemNome">Cidade:</label>
-    <li class="list-group-item">{{cidade}}</li>
-    <label for="itemNome">Estado:</label>
-    <li class="list-group-item">{{ estados}}</li>
+    <li class="list-group-item">{{informacaoCliente.cidade}}</li>
+    
+    <div class="form-group">
+  <label>Estado selecionado:</label>
+  <label>{{ estados.find(e => e.sigla === estados)?.nomeEstado }}</label>
+</div>
+
+    
     <label for="itemNome">Hobbies:</label>
-    <li class="list-group-item">{{hobbies}}</li>
+    <li class="list-group-item">{{informacaoCliente.hobbies}}</li>
     <label for="itemNome">Linguagens de Programação:</label>
-    <li class="list-group-item">{{liguagensDeProgramacao}}</li>
+    <li class="list-group-item">{{informacaoCliente.liguagensDeProgramacao}}</li>
     <label for="itemNome">Biografia:</label>
-    <li class="list-group-item">{{biografia}}</li>
+    <li class="list-group-item">{{informacaoCliente.biografia}}</li>
   </ul>
 </div>
       </div>
