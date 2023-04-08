@@ -11,6 +11,9 @@ const informacaoCliente = ref({
   endereco: '',
   cidade: '',
   estado: '',
+  estadoSelecionado: '',
+  hobbies: '',
+  linguagens: '',
   biografia: ''
 });
 
@@ -23,16 +26,13 @@ function enviarFormulario() {
     dataDeNascimento: informacaoCliente.value.dataDeNascimento,
     endereco: informacaoCliente.value.endereco,
     cidade: informacaoCliente.value.cidade,
-    estado: estadoSelecionado.value,
-    hobbies: hobbies.value,
-    linguagens: linguagens.value,
+    estado: informacaoCliente.value.estadoSelecionado,
+    hobbies: informacaoCliente.value.hobbies,
+    linguagens: informacaoCliente.value.linguagens,
     biografia: informacaoCliente.value.biografia
   }
 };
 
-const hobbies = ref('');
-const linguagens = ref('');
-const estadoSelecionado = ref('');
 const mostrarSenha = ref(false);
 const mostrarSenhaConfirmacao = ref(false);
 const informacoesEnviadas = ref(null);
@@ -69,7 +69,6 @@ const estados = [
 </script>
 
 <template>
-  
   <div>
     <form @submit.prevent="enviarFormulario">
       <div class="card text-bg-secondary mb-5 mt-5">
@@ -150,8 +149,8 @@ const estados = [
           
           <div>
             <div class="form-group">
-              <label for="estadoSelecionado">Estado:</label>
-              <select v-model="estadoSelecionado" class="form-control" required>
+              <label for="informacaoCliente.estadoSelecionado">Estado:</label>
+              <select v-model="informacaoCliente.estadoSelecionado" class="form-control" required>
                 
                 <option value="" disabled>Selecione o estado</option>
                 <option v-for="estado in estados" :key="estado.sigla" :value="estado.nomeEstado">
@@ -185,10 +184,10 @@ const estados = [
           </div>
 
             <div class="form-group">
-              <label for="hobbies">Hobbies:</label>
+              <label for="informacaoCliente.hobbies">Hobbies:</label>
               <input
                 type="text"
-                v-model="hobbies"
+                v-model="informacaoCliente.hobbies"
                 name="Hobbies"
                 class="form-control"
                 placeholder="Hobbies"
@@ -196,10 +195,10 @@ const estados = [
               />
             </div>
             <div class="form-group">
-              <label for="linguagens">Linguagens de Programação:</label>
+              <label for="informacaoCliente.linguagens">Linguagens de Programação:</label>
               <input
                 type="text"
-                v-model="linguagens"
+                v-model="informacaoCliente.linguagens"
                 name="Linguagens de Programacao"
                 class="form-control"
                 placeholder="Linguagens de Programação"
