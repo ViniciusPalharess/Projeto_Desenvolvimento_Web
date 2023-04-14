@@ -76,7 +76,7 @@ const estados = [
           <h1>Formulário</h1>
         </div>
         <div class="card-body">
-          <h2 class="card-title">Insira os dados:</h2>
+          <h2 class="card-title">Coloque os dados:</h2>
 
           <div class="form-group">
             <label for="informacaoCliente.nome">Nome:</label>
@@ -217,7 +217,7 @@ const estados = [
               />
             </div>
             <div class="d-grid gap-2 mt-3">
-              <button class="btn btn-primary" type="submit" @click="enviarFormulario">
+              <button class="btn btn-primary" type="submit">
                 Enviar
               </button>
             </div>
